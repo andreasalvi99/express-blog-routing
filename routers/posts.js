@@ -60,12 +60,10 @@ router.get("/:id", (req, res) => {
   const searchedPost = posts.find((post) => post.id === parseInt(postId));
 
   if (!searchedPost) {
-    res.json({
+    res.status(404).json({
       message: `Post ${postId} non trovato`,
       success: false,
     });
-
-    return res.status(404);
   }
 
   res.json({

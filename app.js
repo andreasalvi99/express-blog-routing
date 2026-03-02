@@ -10,6 +10,7 @@ const port = 3000;
 //^ Per convenienza creo la const dell'URL
 const appUrl = `http://localhost:${port}`;
 
+//^ Importo le routes
 const postsRouter = require("./routers/posts");
 
 //^ Middle ware
