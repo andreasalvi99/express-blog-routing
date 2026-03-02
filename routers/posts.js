@@ -3,6 +3,7 @@ const router = express.Router();
 //^ Array di elementi da restituire con la chiamata get
 const posts = [
   {
+    id: 1,
     titolo: "Ciambellone",
     contenuto:
       "Un classico dolce da forno soffice e profumato, perfetto per colazione o merenda.",
@@ -10,6 +11,7 @@ const posts = [
     tags: ["dolci", "forno", "tradizione"],
   },
   {
+    id: 2,
     titolo: "Cracker alla barbabietola",
     contenuto:
       "Cracker croccanti con barbabietola nell’impasto, ideali come snack o aperitivo.",
@@ -17,6 +19,7 @@ const posts = [
     tags: ["salato", "barbabietola", "snack"],
   },
   {
+    id: 3,
     titolo: "Pane fritto dolce",
     contenuto:
       "Fette di pane fritte e zuccherate, una ricetta semplice e golosa della tradizione casalinga.",
@@ -24,6 +27,7 @@ const posts = [
     tags: ["dolci", "fritto", "tradizione"],
   },
   {
+    id: 4,
     titolo: "Pasta alla barbabietola",
     contenuto:
       "Pasta dal colore vivace preparata con barbabietola, dal gusto delicato e leggermente dolce.",
@@ -31,6 +35,7 @@ const posts = [
     tags: ["primo", "barbabietola", "pasta"],
   },
   {
+    id: 5,
     titolo: "Torta paesana",
     contenuto:
       "Dolce rustico tipico della tradizione, preparato con ingredienti semplici e sapori autentici.",
@@ -52,8 +57,19 @@ router.get("/", (req, res) => {
 router.get("/:id", (req, res) => {
   const postId = req.params.id;
 
+  const searchedPost = posts.find((post) => post.id === parseInt(postId));
+
+  if (!searchedPost) {
+    res.json({
+      message: `Post ${postId} non trovato`,
+      success: false,
+    });
+
+    return res.status(404);
+  }
+
   res.json({
-    results: posts.req,
+    results: searchedPost,
     message: `Ecco il post ${postId}`,
     success: true,
   });
