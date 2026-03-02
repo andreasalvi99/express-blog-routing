@@ -50,8 +50,11 @@ router.get("/", (req, res) => {
 
 //^ Show
 router.get("/:id", (req, res) => {
+  const postId = req.params.id;
+
   res.json({
-    message: `Ecco il post ${req.params.id}`,
+    results: posts.req,
+    message: `Ecco il post ${postId}`,
     success: true,
   });
 });
@@ -66,16 +69,20 @@ router.post("/", (req, res) => {
 
 //^ Update
 router.put("/:id", (req, res) => {
+  const postId = req.params.id;
+
   res.json({
-    message: `post ${req.params.id} modificato interamente`,
+    message: `post ${postId} modificato interamente`,
     success: true,
   });
 });
 
 //^ Destroy
 router.delete("/:id", (req, res) => {
+  const postId = req.params.id;
+
   res.json({
-    message: `post ${req.params.id} eliminato`,
+    message: `post ${postId} eliminato`,
     success: true,
   });
 });
